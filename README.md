@@ -90,18 +90,17 @@ Rush charge: +30% if the deadline is within 7 days, +15% within 14 days. Extras:
 ## Run it on your computer (2 minutes)
 
 ```bash
-cd project-store
 npm install
 npm run dev
 ```
 
-Open http://localhost:3000. There is nothing to set up: during development the app uses a built-in database stored in `project-store/.data/`. The owner panel is at http://localhost:3000/admin, and the password is `admin` until you set `ADMIN_PASSWORD`.
+Open http://localhost:3000. There is nothing to set up: during development the app uses a built-in database stored in `.data/`. The owner panel is at http://localhost:3000/admin, and the password is `admin` until you set `ADMIN_PASSWORD`.
 
 ## Put it online (free database + Vercel)
 
 1. **Database (Supabase, free).** Create a project at [supabase.com](https://supabase.com); choose the **Singapore** region (the server runs there, see below) and note the database password. Click **Connect** at the top, choose **Transaction pooler**, and copy the connection string (it ends in `:6543/postgres`). Replace `[YOUR-PASSWORD]` with your database password. If the password has symbols like `@ # / ?`, reset it to letters and numbers first (Project Settings → Database).
    You don't need to run any SQL: the app creates its tables and loads the sample projects the first time it starts. Everything lives in its own `store` schema, so you can also use an existing Supabase project (see *Sharing a database with another app* below).
-2. **Vercel.** At [vercel.com/new](https://vercel.com/new), import this repository and set **Root Directory** to `project-store`. Add these environment variables, then deploy:
+2. **Vercel.** At [vercel.com/new](https://vercel.com/new), import this repository (no other settings needed). Add these environment variables, then deploy:
 
    | Name | Value |
    |---|---|
@@ -129,7 +128,6 @@ Then use the **Transaction pooler** string from **Connect**, with the user `proj
 
 **Good to know:**
 - Vercel's free *Hobby* plan is meant for non-commercial use. For a paying business, Vercel asks for the Pro plan; the app also runs on any other Next.js host (Netlify, Render, Railway…).
-- This folder shares a repository with the Quán menu app. To stop each push from rebuilding both sites, set Vercel's **Ignored Build Step** (Project Settings → Git) to `git diff HEAD^ HEAD --quiet -- .` in this project.
 - A free **business** UPI ID (PhonePe Business, Paytm for Business, Google Pay for Business) works most smoothly with UPI payment links; some apps limit links to personal UPI IDs.
 
 ### Optional: instant alerts on Telegram
